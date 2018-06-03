@@ -1,0 +1,21 @@
+<?php
+
+use libs\Html;
+echo "<div class='container'>";
+	echo "<div class='panel'>";
+		echo "<div class='panel-body'>";
+echo "<h2>Data {Sample}</h2>";
+
+echo "<a href='".$this->controller."/create'>";
+echo Html::button(["class"=>"btn btn-success","label"=>"<i class='fa fa-plus'></i> Add New"]);
+echo "</a>";
+
+echo Html::tablecrud([
+					"border"=>1,
+					"label"=> $model->label,
+					"value"=> $model->data,
+					"class"=>"table table-bordered"
+				], $this->controller, $model);
+echo "</div>";
+echo "</div>";
+echo "</div>";

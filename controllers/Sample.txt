@@ -1,0 +1,57 @@
+<?php
+namespace controllers;
+use libs\Controller;
+use models\{Sample}_Model;
+class {Sample} extends Controller {
+	
+	function __construct(){
+		parent::__construct();
+		$this->view->title = {Sample};
+	}
+	
+	function actionIndex(){
+		$model = new {Sample}_Model();
+		$model->find()->execute();
+		$this->view->render("index",1,["model"=>$model]);
+	}
+	
+	function actionCreate(){
+		$model = new {Sample}_Model();
+		if($this->request("POST")){
+			$model->attr($_POST);
+			if($model->save()){
+				$this->redirect("{Sample}/index");
+			}
+		}
+		$this->view->render("create",1,["model"=>$model]);
+	}
+	
+	function actionEdit($id){
+		$model = new {Sample}_Model();
+		if($this->request("POST")){
+			$model->attr($_POST);
+			if($model->save()){
+				$this->redirect("{Sample}/index");
+			}
+		}
+		$model->find()->where([{PK}=>$id])->one();
+		$this->view->render("edit",1,["model"=>$model,"id"=>$id]);
+	}
+	
+	function actionView($id){
+		$model = new {Sample}_Model();
+		$model->find()->where([{PK}=>$id])->one();
+		$this->view->render("view",1,["model"=>$model,"id"=>$id]);
+	}
+	
+	function actionDelete($id){
+		
+		if(isset($id)){
+			$model = new {Sample}_Model();
+			if($model->delete([{PK}=>$id])){
+				$this->redirect("{Sample}/index");
+			}
+		}
+	}
+	
+}

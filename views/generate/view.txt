@@ -1,0 +1,16 @@
+<?php use libs\Html; ?>
+<div class="container">
+	<div class="panel">
+		<div class="panel-body">
+		<h2>View {Sample} Page</h2>
+		<table class="table table-bordered">
+		<?php 
+		$labels = $model->label;
+		foreach($labels as $label){
+			echo "<tr><td>$label</td><td>:</td><td>".$model->{$label}."</td></tr>";
+		}
+		?>
+		</table>
+		</div>
+	</div>
+</div>
